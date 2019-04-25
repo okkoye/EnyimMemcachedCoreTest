@@ -1,14 +1,17 @@
 
-> `2.1.13`与`2.1.10`版本的`EnyimMemcachedCore` 同步方法(`Get`)读取缓存都是稳定的
-> `2.1.13`与`2.1.10`版本的`EnyimMemcachedCore` 异步读取方法(`GetAsync`)并发数往上涨后，开始极度不稳定。相对来说`2.1.10`版本要比`2.1.13`版本要稳定一些。
+* `2.1.13`与`2.1.10`版本的`EnyimMemcachedCore` 同步方法(`Get`)读取缓存都是稳定的
+* `2.1.13`与`2.1.10`版本的`EnyimMemcachedCore` 异步读取方法(`GetAsync`)并发数往上涨后，开始极度不稳定。相对来说`2.1.10`版本要比`2.1.13`版本要稳定一些。
 
-* 测试命令
+# 测试一
+```
 siege -c 1000 -t 60s http://localhost:5000/api/values
+```
+```
 siege -c 1000 -t 60s http://localhost:5000/api/values/async
-
+```
 * 2.1.13版本 异步方法测试结果 
 
-Transactions:		          12 hits
+Transactions:    	          12 hits
 Availability:		        0.93 %
 Elapsed time:		       10.99 secs
 Data transferred:	        0.04 MB
@@ -66,9 +69,13 @@ Failed transactions:	         767
 Longest transaction:	        1.00
 Shortest transaction:	        0.00
 
-* 测试命令
+# 测试二
+```
 siege -c 100 -t 60s http://localhost:5000/api/values
+```
+```
 siege -c 100 -t 60s http://localhost:5000/api/values/async
+```
 
 * 2.1.13版本 异步方法测试结果
 
